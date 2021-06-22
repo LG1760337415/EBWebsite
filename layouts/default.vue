@@ -1,13 +1,11 @@
 <template>
-  <div>
     <Nuxt />
-  </div>
 </template>
 
 <style>
 html {
   font-family:
-    'Source Sans Pro',
+    'Source Sns Pro',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -27,7 +25,7 @@ html {
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
   margin: 0;
 }
 

@@ -65,6 +65,7 @@
 
 <script>
 import sysConfig from "~/plugins/sysConfig";
+import {mapMutations} from "vuex";
 
 export default {
   name: "login",
@@ -80,26 +81,37 @@ export default {
       password:'123456',
        code:'345321'
      },
-     codeSrc:sysConfig.baseURL+"web/user/code"
+     codeSrc:sysConfig.baseURL+"web/user/code",
    }
   },
   methods:{
     async submit(){
       let user = this.regForm;
-      let data = await this.$axios.$post(sysConfig.baseURL+'user/login',user);
+      let data = await this.$axios.$post(sysConfig.baseURL+'auth/login',user);
+      console.log(data);
       if (data.error==200){
-        alert("登录成功，token为"+data.token);
+        alert("登录成功!");
+        //将token和name都保存在localStorage中
+        localStorage.setItem("token",data.token);
+        localStorage.setItem("name",data.name);
+        //将name放到vuex中
+        this.checkLoginState()
+        await this.$router.push('/')
       }else {
         alert("登录失败！！！！")
       }
-      console.log(this.regForm+''+data);
     },
+    ...mapMutations({
+      //指定checkLoginState方法在哪里
+      checkLoginState:`loginStore/checkLoginState`
+    }),
     updateImageCode(){
       this.codeSrc = sysConfig.baseURL+"web/user/code?rd="+Math.random();
-    }
+    },
   }
 }
 </script>
+
 
 <style scoped>
 </style>

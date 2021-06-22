@@ -65,10 +65,6 @@
 
 <script>
 import sysConfig from "~/plugins/sysConfig";
-let n = (n) => {1+1}
-console.log(n);
-
-
 export default {
 	layout: 'loginAndRegist',
   head:{
@@ -103,7 +99,7 @@ export default {
       if(!this.verify_form(user)){
         return false;
       };
-			let data = await this.$axios.$post(sysConfig.baseURL+'user/regist',user);
+			let data = await this.$axios.$post(sysConfig.baseURL+'web/user/regist',user);
 			console.log(data);
 			if (data.error==200) {
 				alert("注册成功，可以登录");
@@ -121,7 +117,7 @@ export default {
 		    return;
       }
 
-		  let data = await this.$axios.$get(sysConfig.baseURL+'sms/'+phone);
+		  let data = await this.$axios.$get(sysConfig.baseURL+'web/sms/'+phone);
 		  console.log(data);
       if (data.error==200){
         alert('短信发送成功,请注意查收');

@@ -39,5 +39,12 @@ export default {
     config:{
       devtools:true
     }
+  },
+  render:  {
+    csp: {
+      hashAlgorithm: 'sha256',
+      allowedSources: undefined,
+      policies: undefined
+    },
   }
 }
